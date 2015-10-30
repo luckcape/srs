@@ -354,7 +354,7 @@ int SrsTsContext::encode(SrsFileWriter* writer, SrsTsMessage* msg, SrsCodecVideo
     }
     
     // when any codec changed, write PAT/PMT table.
-    if (vcodec != vc || acodec != ac) {
+    if (vcodec != vc || acodec != ac || (msg->is_video() && msg->write_pcr)) {
         vcodec = vc;
         acodec = ac;
         if ((ret = encode_pat_pmt(writer, video_pid, vs, audio_pid, as)) != ERROR_SUCCESS) {

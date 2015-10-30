@@ -87,7 +87,7 @@ int SrsHttpResponseWriter::final_request()
     }
 
     // complete the chunked encoding.
-    if (content_length == -1) {
+    if (false) {
         std::stringstream ss;
         ss << 0 << SRS_HTTP_CRLF << SRS_HTTP_CRLF;
         std::string ch = ss.str();
@@ -132,7 +132,7 @@ int SrsHttpResponseWriter::write(char* data, int size)
     }
     
     // directly send with content length
-    if (content_length != -1) {
+    if (true) {
         return skt->write((void*)data, size, NULL);
     }
     
@@ -283,7 +283,7 @@ int SrsHttpResponseWriter::send_header(char* data, int size)
     }
     
     // chunked encoding
-    if (content_length == -1) {
+    if (false) {
         hdr->set("Transfer-Encoding", "chunked");
     }
     
